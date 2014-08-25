@@ -1,0 +1,68 @@
+ 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Localizing the Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+
+  </head>
+ 
+  <body>
+    <div>
+    <p id="demo">Click the button to get your coordinates:</p>
+
+<button onclick="getLocation()">Try It</button>
+<button onclick="initialize()">Try on map</button>
+ </div>
+    <div id="map-canvas"></div>
+       <script>
+var x = document.getElementById("demo");
+var u=0;
+var v=0;
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;  
+    u=position.coords.latitude;
+    v=position.coords.longitude;
+
+    var myobj='{"lat":u, "lon":v}';
+    
+    
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en"></script>
+    <script>
+    
+        function initialize() {
+          var mapOptions = {
+            zoom: 10,
+            center: new google.maps.LatLng(u,v)
+
+          };
+          var map = new google.maps.Map(document.getElementById('map-canvas'),
+              mapOptions);
+        }
+ 
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+  </body>
+</html>
