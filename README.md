@@ -1,4 +1,6 @@
-Locate_Yourself
+Locate Yourself
 ===============
 
-Detects your computer's location through IP address and shows it on the map 
+Refer this to understand integration of google maps api with javascript to detect user location based on IP. 
+
+
